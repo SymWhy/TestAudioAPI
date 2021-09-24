@@ -35,3 +35,14 @@
         playBtn.setAttribute('class', 'paused');
         playBtn.textContent = 'Play';
     });
+
+    //gain node (volume)
+    const gainNode = audioCtx.createGain();
+
+    //listen for slider value change
+    volumeSlider.addEventListener('input', function(){
+        gainNode.gain.value = this.value;
+    });
+
+    //finally, connect it all to DESTINATION (speakers)
+    audioSource.connect(gainNode).connect(audioCtx.destination);
