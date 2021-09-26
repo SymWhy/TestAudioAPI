@@ -1,0 +1,21 @@
+body {
+    --main-bg-color: hsl(325, 100%, 80%);
+    background-color: var(--main-bg-color);
+    animation: 5s infinite alternate color-change;
+}
+
+@keyframes color-change {
+    from {
+        background-color: var(--main-bg-color);
+    }
+
+    to {
+        background-color: hsl(24, 100%, 80%);
+    }
+}
+
+.container {
+    height: 50%;
+    width: 50%;
+    background-color: #ffffff;
+}
