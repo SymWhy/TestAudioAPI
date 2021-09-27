@@ -10,12 +10,18 @@ body {
     }
 
     to {
-        background-color: hsl(24, 100%, 80%);
+        background-color: hsl(231, 100%, 80%);
     }
 }
 
 .container {
-    height: 50%;
     width: 50%;
     background-color: #ffffff;
+    display: block; 
+    margin: auto;
+    padding: 50px;
+}
+
+.container button{
+    margin: auto;
 }

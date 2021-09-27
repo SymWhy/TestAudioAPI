@@ -46,3 +46,12 @@
 
     //finally, connect it all to DESTINATION (speakers)
     audioSource.connect(gainNode).connect(audioCtx.destination);
+
+    //visualization bit
+    var r = document.querySelector(':root');
+    var analyzer = audioCtx.createAnalyser();
+    audioSource.connect(analyzer);
+
+   /* function(setColor){
+        r.style.setProperty(--main-bg-color, hsl(24, 100%, 80%));
+    }*/
