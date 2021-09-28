@@ -15,13 +15,21 @@ body {
 }
 
 .container {
-    width: 50%;
-    background-color: #ffffff;
+    width: 25%; 
     display: block; 
     margin: auto;
-    padding: 50px;
 }
 
 .container button{
     margin: auto;
+}
+
+.container input{
+    margin: auto;
+}
+
+.container img {
+    z-index: -999;
+    max-width: 150px;
+    margin: auto;   
 }
