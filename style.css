@@ -1,0 +1,35 @@
+body {
+    --main-bg-color: hsl(325, 100%, 80%);
+    background-color: var(--main-bg-color);
+    animation: 5s infinite alternate color-change;
+}
+
+@keyframes color-change {
+    from {
+        background-color: var(--main-bg-color);
+    }
+
+    to {
+        background-color: hsl(231, 100%, 80%);
+    }
+}
+
+.container {
+    width: 25%; 
+    display: block; 
+    margin: auto;
+}
+
+.container button{
+    margin: auto;
+}
+
+.container input{
+    margin: auto;
+}
+
+.container img {
+    z-index: -999;
+    max-width: 300px;
+    margin: auto;   
+}
