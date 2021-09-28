@@ -30,6 +30,6 @@ body {
 
 .container img {
     z-index: -999;
-    max-width: 150px;
+    max-width: 300px;
     margin: auto;   
 }
