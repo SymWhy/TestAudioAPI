@@ -62,7 +62,7 @@
     });
 
     qSlider.addEventListener('input', function() {
-        bqfNode.q.value = this.value;
+        bqfNode.Q.value = this.value;
     });
 
     gainSlider.addEventListener('input', function(){
@@ -76,11 +76,34 @@
 
     filterSelect.addEventListener('input', function() {
         bqfNode.type = this.value;
+        useQ();
+        useGain();
     });
 
     //finally, connect it all to DESTINATION (speakers)
     audioSource.connect(bqfNode).connect(audioCtx.destination);
     audioSource.connect(gainNode).connect(audioCtx.destination);
+
+    function useGain() {
+        if (bqfNode.type == 'lowpass' || bqfNode.type == 'highpass' || 
+        bqfNode.type == 'bandpass' || bqfNode.type == 'notch' || bqfNode.type == 'allpass') {
+            gainSlider.disabled = true;
+        }
+        
+        else {
+            gainSlider.disabled = false;
+        }
+    };
+
+    function useQ() {
+        if (bqfNode.type == 'lowshelf' || bqfNode.type == 'highshelf') {
+            qSlider.disabled = true;
+        }
+        
+        else {
+            qSlider.disabled = false;
+        }
+    };
 
     //visualization bit
     var r = document.querySelector(':root');
