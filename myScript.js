@@ -96,12 +96,21 @@
     };
 
     function useQ() {
-        if (bqfNode.type == 'lowshelf' || bqfNode.type == 'highshelf') {
-            qSlider.disabled = true;
+        if (bqfNode.type == 'lowpass' || bqfNode.type == 'highpass') {
+            qSlider.disabled = false;
+            qSlider.step = 0.1;
+            qSlider.max = 16;
         }
         
-        else {
+        else if (bqfNode.type == 'bandpass' || bqfNode.type == 'notch' || bqfNode.type == 'allpass') {
             qSlider.disabled = false;
+            qSlider.step = 0.01;
+            qSlider.max = 1;
+        }
+
+        else {
+            qSlider.value = 0;
+            qSlider.disabled = true;
         }
     };
 
