@@ -9,11 +9,12 @@
     const playBtn = document.querySelector('button');
     const volSlider = document.querySelector('.volume');
 
-    //const qSlider = document.querySelector('.q-factor');
-    const gainSlider = document.querySelector('.gain');
+    //
     const freqSlider = document.querySelector('.frequency');
+    const qSlider = document.querySelector('.q-factor');
+    const gainSlider = document.querySelector('.gain');
+    
     const detuneSlider = document.querySelector('.detune');
-
     const filterSelect = document.getElementById('bqf-type');
 
     const audioSource = audioCtx.createMediaElementSource(audioElement);
@@ -50,33 +51,59 @@
     bqfNode.type = 'lowpass';
 
     //listen for slider value change
+
     volSlider.addEventListener('input', function() {
         gainNode.gain.value = this.value;
+    });
+
+    //BQF Functions
+    freqSlider.addEventListener('input', function() {
+        bqfNode.frequency.value = this.value;
+    });
+
+    qSlider.addEventListener('input', function() {
+        bqfNode.Q.value = this.value;
     });
 
     gainSlider.addEventListener('input', function(){
         bqfNode.gain.value = this.value;
     });
 
-    freqSlider.addEventListener('input', function() {
-        bqfNode.frequency.value = this.value;
-    });
-
     detuneSlider.addEventListener('input', function() {
         bqfNode.detune.value = this.value;
     });
 
-    /*qSlider.addEventListener('input', function() {
-        bqfNode.q.value = this.value;
-    });*/
 
     filterSelect.addEventListener('input', function() {
         bqfNode.type = this.value;
+        useQ();
+        useGain();
     });
 
     //finally, connect it all to DESTINATION (speakers)
     audioSource.connect(bqfNode).connect(audioCtx.destination);
     audioSource.connect(gainNode).connect(audioCtx.destination);
+
+    function useGain() {
+        if (bqfNode.type == 'lowpass' || bqfNode.type == 'highpass' || 
+        bqfNode.type == 'bandpass' || bqfNode.type == 'notch' || bqfNode.type == 'allpass') {
+            gainSlider.disabled = true;
+        }
+        
+        else {
+            gainSlider.disabled = false;
+        }
+    };
+
+    function useQ() {
+        if (bqfNode.type == 'lowshelf' || bqfNode.type == 'highshelf') {
+            qSlider.disabled = true;
+        }
+        
+        else {
+            qSlider.disabled = false;
+        }
+    };
 
     //visualization bit
     var r = document.querySelector(':root');
